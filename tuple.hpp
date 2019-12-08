@@ -9,7 +9,7 @@ namespace tpl {
 	struct tuple : public tuple<Rest...> {
 		First first;
 		
-		tuple(First first, Rest... rest)
+		tuple(const First first, const Rest... rest) noexcept
 			: tuple<Rest...>(rest...)
 			, first(first)
 		{}
@@ -19,7 +19,7 @@ namespace tpl {
 	struct tuple<First> {
 		First first;
 
-		tuple(First first)
+		tuple(const First first) noexcept
 			: first(first)
 		{}
 	};
@@ -27,7 +27,7 @@ namespace tpl {
 	template<std::size_t Index, class First, class... Rest>
 	struct impl {
 		static auto value(const tuple<First, Rest...>* tpl) 
-			-> decltype(impl<Index - 1, Rest...>::value(tpl)) {
+			-> decltype(impl<Index - 1, Rest...>::value(tpl)) const {
 			return impl<Index - 1, Rest...>::value(tpl);
 		}
 	};
@@ -41,7 +41,7 @@ namespace tpl {
 
 	template<std::size_t Index, class First, class... Rest>
 	auto get(const tuple<First, Rest...>& tpl)
-		-> decltype(impl<Index, First, Rest...>::value(&tpl)) {
+		-> decltype(impl<Index, First, Rest...>::value(&tpl)) const {
 		return impl<Index, First, Rest...>::value(&tpl);
 	}
 }
