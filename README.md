@@ -4,7 +4,7 @@ For my c++ practice
 
 ## 'Installation'
 ```c++
-#include "tuple.hpp> // just include the header file
+#include "tuple.hpp" // just include the header file
 ```
 
 ## Example
