@@ -1,4 +1,4 @@
-# C++11 compatible tuple header-only implementation with variadic templates
+# tuple header-only implementation with variadic templates
 
 For my c++ practice
 
